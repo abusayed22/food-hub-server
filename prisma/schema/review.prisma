@@ -1,0 +1,14 @@
+
+model review {
+  id      String  @id @default(cuid())
+  comment String? @db.Text
+
+  // own releation
+  parent_id       String?
+  related_comment review?  @relation("OWN_REL", fields: [parent_id], references: [id], onDelete: Cascade)
+  replies         review[] @relation("OWN_REL")
+  menu_id         String
+  menu            menu     @relation(fields: [menu_id], references: [id], onDelete: Cascade)
+  createdAt       DateTime @default(now())
+  updateAt        DateTime @default(now()) @updatedAt
+}

@@ -1,0 +1,24 @@
+
+model order {
+  id      String  @id @default(cuid())
+  orderNumber String @unique
+  status orderStatus @default(PENDING)
+  subtotal Float
+  deliveryFee Float @default(0)
+  totalAmount Float
+  deliveryAddress String
+  deliveryNote String?
+
+  createdAt       DateTime @default(now())
+  updateAt        DateTime @default(now()) @updatedAt
+}
+
+enum orderStatus {
+  PENDING 
+  CONFIRMED 
+  PREPARING 
+  READY 
+  OUT_FOR_DELIVERY 
+  DELIVERED 
+  CANCELLED
+}

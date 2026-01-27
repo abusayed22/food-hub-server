@@ -1,0 +1,15 @@
+
+model menu {
+  id          String  @id @default(cuid())
+  name        String
+  isAvailable Boolean @default(true)
+  price       Float
+  description String?
+  iamge       String?
+
+  review      review[]
+  category_id String
+  category    categories @relation(fields: [category_id], references: [id], onDelete: Cascade)
+  createdAt   DateTime   @default(now())
+  updateAt    DateTime   @default(now()) @updatedAt
+}
