@@ -6,10 +6,10 @@ model menu {
   price       Float
   description String?
   iamge       String?
+  category    String[]
 
   review      review[]
-  category_id String
-  category    categories @relation(fields: [category_id], references: [id], onDelete: Cascade)
+  user_id String
   createdAt   DateTime   @default(now())
   updateAt    DateTime   @default(now()) @updatedAt
 }

@@ -5,6 +5,7 @@ import { toNodeHandler } from 'better-auth/node';
 import { auth } from '../lib/auth';
 import notFound from './middleware/error/notFound';
 import errorHandler from './middleware/error/globalErrorHandler';
+import { mealsRoute } from './modules/meals/meal.route';
 
 const app = express()
 const port = process.env.PORT 
@@ -24,10 +25,11 @@ app.use(express.json());
 
 // better auth
 app.all('/api/auth/{*any}', toNodeHandler(auth));
+// app.all("/api/auth/*", toNodeHandler(auth));
 
 
 // Routes 
-app.use("/")
+app.use("/meals",mealsRoute)
 
 
 app.get('/', (req, res) => {
