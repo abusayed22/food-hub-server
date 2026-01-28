@@ -1,0 +1,17 @@
+
+
+
+model categories {
+  id     String         @id @default(cuid())
+  name   String @unique
+  status categoryStatus @default(ACTIVE)
+
+  menu      menu[]
+  createdAt DateTime @default(now())
+  updateAt  DateTime @default(now()) @updatedAt
+}
+
+enum categoryStatus {
+  ACTIVE
+  DEACTIVE
+}

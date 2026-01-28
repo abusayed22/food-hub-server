@@ -1,8 +1,10 @@
+import { string } from './../../../node_modules/zod/src/v4/core/regexes';
 import { menuWhereInput } from "../../../generated/prisma/models"
 import { prisma } from "../../../lib/prisma"
+import { menu } from '../../../generated/prisma/client';
 
 
-export const getAllMeals = async ({ search, categories, user_id, page, limit, skip, order, orderBy }: { search: string, categories: string[], user_id: string | undefined, page: number, limit: number, skip: number, orderBy: string, order: string }) => {
+export const getAllMeals = async ({ search, category_id, page, limit, skip, order, orderBy }: { search: string, category_id: string |undefined,  page: number, limit: number, skip: number, orderBy: string, order: string }) => {
     const andCondition: menuWhereInput[] = [];
 
     // if have search value
@@ -14,30 +16,19 @@ export const getAllMeals = async ({ search, categories, user_id, page, limit, sk
                     mode: "insensitive"
                 }
             },
-            {
-                category: {
-                    has: search
-                }
-            }
             ]
         })
     };
 
     // if have categories value
-    if (categories.length > 0) {
+    if (category_id) {
         andCondition.push({
-            category: {
-                hasEvery: categories
-            }
+            category_id
         })
     }
 
     // if have user_id
-    if (user_id) {
-        andCondition.push({
-            user_id
-        })
-    }
+
 
     const res = await prisma.menu.findMany({
         take: limit,
@@ -79,10 +70,18 @@ export const getAllMeals = async ({ search, categories, user_id, page, limit, sk
 };
 
 
+// -------------------- POST -------------------
+export const createMeal = async(data:Omit<menu,'id'|'createdAt'|'updateAt' >,user_id:string) => {
+    const result = await prisma.menu.create({
+        data:{
+            ...data,
+        user_id
+        }
+    })
+}
 
 
 
 
 
-
-export const mealsService = { getAllMeals }
+export const mealsService = { getAllMeals,createMeal }

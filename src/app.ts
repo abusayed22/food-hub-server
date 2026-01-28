@@ -6,6 +6,8 @@ import { auth } from '../lib/auth';
 import notFound from './middleware/error/notFound';
 import errorHandler from './middleware/error/globalErrorHandler';
 import { mealsRoute } from './modules/meals/meal.route';
+import authMiddleware from './middleware/auth/authMiddleware';
+import { categoryRoute } from './modules/category/category.route';
 
 const app = express()
 const port = process.env.PORT 
@@ -30,6 +32,7 @@ app.all('/api/auth/{*any}', toNodeHandler(auth));
 
 // Routes 
 app.use("/meals",mealsRoute)
+app.use("/categories",categoryRoute)
 
 
 app.get('/', (req, res) => {

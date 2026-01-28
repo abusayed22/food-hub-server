@@ -21,7 +21,7 @@ declare global {
 
 
 
-const auth = (...roles:Role[]) => {
+const authMiddleware = (...roles:Role[]) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
             const session = await betterAuth.api.getSession({
@@ -56,5 +56,5 @@ const auth = (...roles:Role[]) => {
 }
 
 
-export default auth;
+export default authMiddleware;
 

@@ -3,6 +3,7 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 // import { prisma } from "./prisma";
 import {prisma} from './prisma'
 import nodemailer from "nodemailer"
+import { Role } from "../src/constants/role.type";
 
 
 
@@ -98,7 +99,7 @@ export const auth = betterAuth({
     additionalFields: {
       role: {
         type: "string",
-        defaultValue: "USER",
+        defaultValue: Role.customer,
         required: false,
       },
       phone: {
