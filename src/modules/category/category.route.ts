@@ -10,8 +10,8 @@ import { Role } from "../../constants/role.type";
 const route = Router()
 
 route.get("/",categoryController.getAllCategories);
-route.post("/",authMiddleware(Role.admin),categoryController.createCategory); // TODO: ROle customer ta remove hoye jabe
-route.patch("/",authMiddleware(Role.admin),categoryController.categoryUpdate); // TODO: ROle customer ta remove hoye jabe
+route.post("/",authMiddleware(Role.admin),categoryController.createCategory); 
+route.patch("/",authMiddleware(Role.admin),categoryController.categoryUpdate); 
 
 
 

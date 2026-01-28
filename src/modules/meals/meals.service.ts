@@ -73,11 +73,10 @@ export const getAllMeals = async ({ search, category_id, page, limit, skip, orde
 // -------------------- POST -------------------
 export const createMeal = async(data:Omit<menu,'id'|'createdAt'|'updateAt' >,user_id:string) => {
     const result = await prisma.menu.create({
-        data:{
-            ...data,
-        user_id
-        }
-    })
+        data
+    });
+
+    return result
 }
 
 

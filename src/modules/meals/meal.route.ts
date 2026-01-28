@@ -8,7 +8,7 @@ import { Role } from "../../constants/role.type";
 const route = Router()
 
 route.get("/",mealsController.getAllMeals);
-route.post("/",authMiddleware(Role.admin,Role.provider),mealsController.createMeal);
+route.post("/",authMiddleware(Role.admin,Role.customer),mealsController.createMeal);
 
 
 

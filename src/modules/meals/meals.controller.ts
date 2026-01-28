@@ -31,7 +31,7 @@ async function createMeal(req:Request,res:Response,next:NextFunction) {
         }
 
         const result = await mealsService.createMeal(req.body,user_id as string)
-        return result;
+        return res.status(201).json(result);
     } catch (error) {
         next(error)
     }
