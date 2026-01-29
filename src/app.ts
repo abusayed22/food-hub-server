@@ -31,8 +31,9 @@ app.all('/api/auth/{*any}', toNodeHandler(auth));
 
 
 // Routes 
-app.use("/meals",mealsRoute)
-app.use("/categories",categoryRoute)
+app.use("/api/meals",mealsRoute)
+app.use("/api/categories",categoryRoute)
+app.use("/api/orders",categoryRoute)
 
 
 app.get('/', (req, res) => {
