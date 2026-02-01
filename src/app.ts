@@ -4,7 +4,7 @@ import cors from 'cors';
 import { toNodeHandler } from 'better-auth/node';
 import { auth } from '../lib/auth';
 import notFound from './middleware/error/notFound';
-import errorHandler from './middleware/error/globalErrorHandler';
+// import errorHandler from './middleware/error/globalErrorHandler';
 import { mealsRoute } from './modules/meals/meal.route';
 import authMiddleware from './middleware/auth/authMiddleware';
 import { categoryRoute } from './modules/category/category.route';
@@ -64,6 +64,6 @@ app.listen(port, () => {
 app.use(notFound);
 
 // global error handler
-app.use(errorHandler);
+// app.use(errorHandler);
 
 export {app}
