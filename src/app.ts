@@ -17,8 +17,8 @@ const port = process.env.PORT
 
 
 app.use(cors({
-    origin: ["http://localhost:3000"], // আপনার ফ্রন্টএন্ডের URL
-    credentials: true, // এটা true না দিলে লগইন হবে না (কুকি ব্লক হবে)
+    origin: ["http://localhost:3000"], 
+    credentials: true, 
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
 }));
