@@ -9,6 +9,7 @@ function errorHandler(err: any, req: Request, res: Response, next: NextFunction)
   let errorDetails = err;
 
   // PrismaClientValidationError
+  // if (err instanceof Prisma.PrismaClientValidationError) {
   if (err instanceof Prisma.PrismaClientValidationError) {
     statusCode = 422;
     errorMessage = "You provided incorrect field or missing field!"
