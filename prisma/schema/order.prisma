@@ -6,9 +6,26 @@ model order {
   subtotal Float
   deliveryFee Float @default(0)
   totalAmount Float
+  paymentStatus PaymentStatus @default(PENDING) // Track if they paid
+  paymentMethod PaymentMethod @default(CASH_ON_DELIVERY)
+  customerName  String
+  customerPhone String
   deliveryAddress String
   deliveryNote String?
+  user_id String
+  items orderItem[]
+  createdAt       DateTime @default(now())
+  updateAt        DateTime @default(now()) @updatedAt
+}
 
+model orderItem{
+  id String @id @default(cuid())
+  quantity  Int
+  price Float
+  order_id String
+  order order @relation(fields: [order_id],references: [id])
+  menu_id String
+  menu menu @relation(fields: [menu_id],references: [id])
   createdAt       DateTime @default(now())
   updateAt        DateTime @default(now()) @updatedAt
 }
@@ -21,4 +38,15 @@ enum orderStatus {
   OUT_FOR_DELIVERY 
   DELIVERED 
   CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+}
+
+enum PaymentMethod {
+  CASH_ON_DELIVERY
+  ONLINE
 }

@@ -8,6 +8,7 @@ model menu {
   iamge       String?
 
   review      review[]
+  orderItem orderItem[]
   category_id String
   category    categories @relation(fields: [category_id], references: [id], onDelete: Cascade)
   createdAt   DateTime   @default(now())

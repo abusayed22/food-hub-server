@@ -8,6 +8,9 @@ import errorHandler from './middleware/error/globalErrorHandler';
 import { mealsRoute } from './modules/meals/meal.route';
 import authMiddleware from './middleware/auth/authMiddleware';
 import { categoryRoute } from './modules/category/category.route';
+import { orderRoute } from './modules/orders/orders.route';
+import { Role } from './constants/role.type';
+import { adminRoute } from './modules/admin/admin.route';
 
 const app = express()
 const port = process.env.PORT 
@@ -33,7 +36,14 @@ app.all('/api/auth/{*any}', toNodeHandler(auth));
 // Routes 
 app.use("/api/meals",mealsRoute)
 app.use("/api/categories",categoryRoute)
-app.use("/api/orders",categoryRoute)
+app.use("/api/orders",orderRoute)
+
+// provider routes
+app.use("/api/provider/meals",authMiddleware(Role.provider),mealsRoute)
+app.use("/api/provider/orders",authMiddleware(Role.provider),orderRoute)
+
+// admin routes
+app.use("/api/admin/users",authMiddleware(Role.admin),adminRoute)
 
 
 app.get('/', (req, res) => {

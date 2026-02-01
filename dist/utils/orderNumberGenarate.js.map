@@ -1,0 +1,1 @@
+{"version":3,"file":"orderNumberGenarate.js","sourceRoot":"","sources":["../../utils/orderNumberGenarate.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,MAAM,mBAAmB,GAAG,GAAG,EAAE;IACtC,sDAAsD;IACtD,OAAO,OAAO,IAAI,CAAC,GAAG,EAAE,IAAI,IAAI,CAAC,KAAK,CAAC,IAAI,CAAC,MAAM,EAAE,GAAG,IAAI,CAAC,EAAE,CAAC;AACjE,CAAC,CAAA"}
