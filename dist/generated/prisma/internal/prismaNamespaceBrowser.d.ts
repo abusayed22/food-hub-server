@@ -1,6 +1,6 @@
 import * as runtime from "@prisma/client/runtime/index-browser";
-export type * from '../models';
-export type * from './prismaNamespace';
+export type * from '../models.js';
+export type * from './prismaNamespace.js';
 export declare const Decimal: typeof runtime.Decimal;
 export declare const NullTypes: {
     DbNull: (new (secret: never) => typeof runtime.DbNull);
@@ -133,10 +133,10 @@ export declare const OrderScalarFieldEnum: {
 export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum];
 export declare const OrderItemScalarFieldEnum: {
     readonly id: "id";
-    readonly order_id: "order_id";
-    readonly menu_id: "menu_id";
     readonly quantity: "quantity";
     readonly price: "price";
+    readonly order_id: "order_id";
+    readonly menu_id: "menu_id";
     readonly createdAt: "createdAt";
     readonly updateAt: "updateAt";
 };

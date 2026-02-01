@@ -1,7 +1,7 @@
 import * as runtime from "@prisma/client/runtime/client";
-import type * as Prisma from "../models";
-import { type PrismaClient } from "./class";
-export type * from '../models';
+import type * as Prisma from "../models.js";
+import { type PrismaClient } from "./class.js";
+export type * from '../models.js';
 export type DMMF = typeof runtime.DMMF;
 export type PrismaPromise<T> = runtime.Types.Public.PrismaPromise<T>;
 /**
@@ -1045,10 +1045,10 @@ export declare const OrderScalarFieldEnum: {
 export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum];
 export declare const OrderItemScalarFieldEnum: {
     readonly id: "id";
-    readonly order_id: "order_id";
-    readonly menu_id: "menu_id";
     readonly quantity: "quantity";
     readonly price: "price";
+    readonly order_id: "order_id";
+    readonly menu_id: "menu_id";
     readonly createdAt: "createdAt";
     readonly updateAt: "updateAt";
 };

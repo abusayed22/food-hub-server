@@ -168,10 +168,10 @@ export const OrderScalarFieldEnum = {
 };
 export const OrderItemScalarFieldEnum = {
     id: 'id',
-    order_id: 'order_id',
-    menu_id: 'menu_id',
     quantity: 'quantity',
     price: 'price',
+    order_id: 'order_id',
+    menu_id: 'menu_id',
     createdAt: 'createdAt',
     updateAt: 'updateAt'
 };

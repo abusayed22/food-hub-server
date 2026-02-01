@@ -1,4 +1,3 @@
-import { order } from "../../../generated/prisma/client"
 import { prisma } from "../../../lib/prisma"
 
 

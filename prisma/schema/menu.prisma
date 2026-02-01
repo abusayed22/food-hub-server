@@ -6,6 +6,10 @@ model menu {
   price       Float
   description String?
   iamge       String?
+  tags       String[]
+  isFeatured  Boolean   @default(false)
+  isSignature Boolean   @default(false)
+  isNew      Boolean   @default(false)
 
   review      review[]
   orderItem orderItem[]

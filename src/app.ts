@@ -11,6 +11,7 @@ import { categoryRoute } from './modules/category/category.route';
 import { orderRoute } from './modules/orders/orders.route';
 import { Role } from './constants/role.type';
 import { adminRoute } from './modules/admin/admin.route';
+import errorHandler from './middleware/error/globalErrorHandler';
 
 const app = express()
 const port = process.env.PORT 
@@ -64,6 +65,6 @@ app.listen(port, () => {
 app.use(notFound);
 
 // global error handler
-// app.use(errorHandler);
+app.use(errorHandler);
 
 export {app}

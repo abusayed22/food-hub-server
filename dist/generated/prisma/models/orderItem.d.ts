@@ -1,5 +1,5 @@
 import type * as runtime from "@prisma/client/runtime/client";
-import type * as Prisma from "../internal/prismaNamespace";
+import type * as Prisma from "../internal/prismaNamespace.js";
 /**
  * Model orderItem
  *
@@ -22,28 +22,28 @@ export type OrderItemSumAggregateOutputType = {
 };
 export type OrderItemMinAggregateOutputType = {
     id: string | null;
-    order_id: string | null;
-    menu_id: string | null;
     quantity: number | null;
     price: number | null;
+    order_id: string | null;
+    menu_id: string | null;
     createdAt: Date | null;
     updateAt: Date | null;
 };
 export type OrderItemMaxAggregateOutputType = {
     id: string | null;
-    order_id: string | null;
-    menu_id: string | null;
     quantity: number | null;
     price: number | null;
+    order_id: string | null;
+    menu_id: string | null;
     createdAt: Date | null;
     updateAt: Date | null;
 };
 export type OrderItemCountAggregateOutputType = {
     id: number;
-    order_id: number;
-    menu_id: number;
     quantity: number;
     price: number;
+    order_id: number;
+    menu_id: number;
     createdAt: number;
     updateAt: number;
     _all: number;
@@ -58,28 +58,28 @@ export type OrderItemSumAggregateInputType = {
 };
 export type OrderItemMinAggregateInputType = {
     id?: true;
-    order_id?: true;
-    menu_id?: true;
     quantity?: true;
     price?: true;
+    order_id?: true;
+    menu_id?: true;
     createdAt?: true;
     updateAt?: true;
 };
 export type OrderItemMaxAggregateInputType = {
     id?: true;
-    order_id?: true;
-    menu_id?: true;
     quantity?: true;
     price?: true;
+    order_id?: true;
+    menu_id?: true;
     createdAt?: true;
     updateAt?: true;
 };
 export type OrderItemCountAggregateInputType = {
     id?: true;
-    order_id?: true;
-    menu_id?: true;
     quantity?: true;
     price?: true;
+    order_id?: true;
+    menu_id?: true;
     createdAt?: true;
     updateAt?: true;
     _all?: true;
@@ -162,10 +162,10 @@ export type orderItemGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 };
 export type OrderItemGroupByOutputType = {
     id: string;
-    order_id: string;
-    menu_id: string;
     quantity: number;
     price: number;
+    order_id: string;
+    menu_id: string;
     createdAt: Date;
     updateAt: Date;
     _count: OrderItemCountAggregateOutputType | null;
@@ -182,10 +182,10 @@ export type orderItemWhereInput = {
     OR?: Prisma.orderItemWhereInput[];
     NOT?: Prisma.orderItemWhereInput | Prisma.orderItemWhereInput[];
     id?: Prisma.StringFilter<"orderItem"> | string;
-    order_id?: Prisma.StringFilter<"orderItem"> | string;
-    menu_id?: Prisma.StringFilter<"orderItem"> | string;
     quantity?: Prisma.IntFilter<"orderItem"> | number;
     price?: Prisma.FloatFilter<"orderItem"> | number;
+    order_id?: Prisma.StringFilter<"orderItem"> | string;
+    menu_id?: Prisma.StringFilter<"orderItem"> | string;
     createdAt?: Prisma.DateTimeFilter<"orderItem"> | Date | string;
     updateAt?: Prisma.DateTimeFilter<"orderItem"> | Date | string;
     order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.orderWhereInput>;
@@ -193,10 +193,10 @@ export type orderItemWhereInput = {
 };
 export type orderItemOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
-    order_id?: Prisma.SortOrder;
-    menu_id?: Prisma.SortOrder;
     quantity?: Prisma.SortOrder;
     price?: Prisma.SortOrder;
+    order_id?: Prisma.SortOrder;
+    menu_id?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     updateAt?: Prisma.SortOrder;
     order?: Prisma.orderOrderByWithRelationInput;
@@ -207,10 +207,10 @@ export type orderItemWhereUniqueInput = Prisma.AtLeast<{
     AND?: Prisma.orderItemWhereInput | Prisma.orderItemWhereInput[];
     OR?: Prisma.orderItemWhereInput[];
     NOT?: Prisma.orderItemWhereInput | Prisma.orderItemWhereInput[];
-    order_id?: Prisma.StringFilter<"orderItem"> | string;
-    menu_id?: Prisma.StringFilter<"orderItem"> | string;
     quantity?: Prisma.IntFilter<"orderItem"> | number;
     price?: Prisma.FloatFilter<"orderItem"> | number;
+    order_id?: Prisma.StringFilter<"orderItem"> | string;
+    menu_id?: Prisma.StringFilter<"orderItem"> | string;
     createdAt?: Prisma.DateTimeFilter<"orderItem"> | Date | string;
     updateAt?: Prisma.DateTimeFilter<"orderItem"> | Date | string;
     order?: Prisma.XOR<Prisma.OrderScalarRelationFilter, Prisma.orderWhereInput>;
@@ -218,10 +218,10 @@ export type orderItemWhereUniqueInput = Prisma.AtLeast<{
 }, "id">;
 export type orderItemOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
-    order_id?: Prisma.SortOrder;
-    menu_id?: Prisma.SortOrder;
     quantity?: Prisma.SortOrder;
     price?: Prisma.SortOrder;
+    order_id?: Prisma.SortOrder;
+    menu_id?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     updateAt?: Prisma.SortOrder;
     _count?: Prisma.orderItemCountOrderByAggregateInput;
@@ -235,10 +235,10 @@ export type orderItemScalarWhereWithAggregatesInput = {
     OR?: Prisma.orderItemScalarWhereWithAggregatesInput[];
     NOT?: Prisma.orderItemScalarWhereWithAggregatesInput | Prisma.orderItemScalarWhereWithAggregatesInput[];
     id?: Prisma.StringWithAggregatesFilter<"orderItem"> | string;
-    order_id?: Prisma.StringWithAggregatesFilter<"orderItem"> | string;
-    menu_id?: Prisma.StringWithAggregatesFilter<"orderItem"> | string;
     quantity?: Prisma.IntWithAggregatesFilter<"orderItem"> | number;
     price?: Prisma.FloatWithAggregatesFilter<"orderItem"> | number;
+    order_id?: Prisma.StringWithAggregatesFilter<"orderItem"> | string;
+    menu_id?: Prisma.StringWithAggregatesFilter<"orderItem"> | string;
     createdAt?: Prisma.DateTimeWithAggregatesFilter<"orderItem"> | Date | string;
     updateAt?: Prisma.DateTimeWithAggregatesFilter<"orderItem"> | Date | string;
 };
@@ -253,10 +253,10 @@ export type orderItemCreateInput = {
 };
 export type orderItemUncheckedCreateInput = {
     id?: string;
-    order_id: string;
-    menu_id: string;
     quantity: number;
     price: number;
+    order_id: string;
+    menu_id: string;
     createdAt?: Date | string;
     updateAt?: Date | string;
 };
@@ -271,19 +271,19 @@ export type orderItemUpdateInput = {
 };
 export type orderItemUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
-    order_id?: Prisma.StringFieldUpdateOperationsInput | string;
-    menu_id?: Prisma.StringFieldUpdateOperationsInput | string;
     quantity?: Prisma.IntFieldUpdateOperationsInput | number;
     price?: Prisma.FloatFieldUpdateOperationsInput | number;
+    order_id?: Prisma.StringFieldUpdateOperationsInput | string;
+    menu_id?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 export type orderItemCreateManyInput = {
     id?: string;
-    order_id: string;
-    menu_id: string;
     quantity: number;
     price: number;
+    order_id: string;
+    menu_id: string;
     createdAt?: Date | string;
     updateAt?: Date | string;
 };
@@ -296,10 +296,10 @@ export type orderItemUpdateManyMutationInput = {
 };
 export type orderItemUncheckedUpdateManyInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
-    order_id?: Prisma.StringFieldUpdateOperationsInput | string;
-    menu_id?: Prisma.StringFieldUpdateOperationsInput | string;
     quantity?: Prisma.IntFieldUpdateOperationsInput | number;
     price?: Prisma.FloatFieldUpdateOperationsInput | number;
+    order_id?: Prisma.StringFieldUpdateOperationsInput | string;
+    menu_id?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -313,10 +313,10 @@ export type orderItemOrderByRelationAggregateInput = {
 };
 export type orderItemCountOrderByAggregateInput = {
     id?: Prisma.SortOrder;
-    order_id?: Prisma.SortOrder;
-    menu_id?: Prisma.SortOrder;
     quantity?: Prisma.SortOrder;
     price?: Prisma.SortOrder;
+    order_id?: Prisma.SortOrder;
+    menu_id?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     updateAt?: Prisma.SortOrder;
 };
@@ -326,19 +326,19 @@ export type orderItemAvgOrderByAggregateInput = {
 };
 export type orderItemMaxOrderByAggregateInput = {
     id?: Prisma.SortOrder;
-    order_id?: Prisma.SortOrder;
-    menu_id?: Prisma.SortOrder;
     quantity?: Prisma.SortOrder;
     price?: Prisma.SortOrder;
+    order_id?: Prisma.SortOrder;
+    menu_id?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     updateAt?: Prisma.SortOrder;
 };
 export type orderItemMinOrderByAggregateInput = {
     id?: Prisma.SortOrder;
-    order_id?: Prisma.SortOrder;
-    menu_id?: Prisma.SortOrder;
     quantity?: Prisma.SortOrder;
     price?: Prisma.SortOrder;
+    order_id?: Prisma.SortOrder;
+    menu_id?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
     updateAt?: Prisma.SortOrder;
 };
@@ -439,9 +439,9 @@ export type orderItemCreateWithoutMenuInput = {
 };
 export type orderItemUncheckedCreateWithoutMenuInput = {
     id?: string;
-    order_id: string;
     quantity: number;
     price: number;
+    order_id: string;
     createdAt?: Date | string;
     updateAt?: Date | string;
 };
@@ -471,10 +471,10 @@ export type orderItemScalarWhereInput = {
     OR?: Prisma.orderItemScalarWhereInput[];
     NOT?: Prisma.orderItemScalarWhereInput | Prisma.orderItemScalarWhereInput[];
     id?: Prisma.StringFilter<"orderItem"> | string;
-    order_id?: Prisma.StringFilter<"orderItem"> | string;
-    menu_id?: Prisma.StringFilter<"orderItem"> | string;
     quantity?: Prisma.IntFilter<"orderItem"> | number;
     price?: Prisma.FloatFilter<"orderItem"> | number;
+    order_id?: Prisma.StringFilter<"orderItem"> | string;
+    menu_id?: Prisma.StringFilter<"orderItem"> | string;
     createdAt?: Prisma.DateTimeFilter<"orderItem"> | Date | string;
     updateAt?: Prisma.DateTimeFilter<"orderItem"> | Date | string;
 };
@@ -488,9 +488,9 @@ export type orderItemCreateWithoutOrderInput = {
 };
 export type orderItemUncheckedCreateWithoutOrderInput = {
     id?: string;
-    menu_id: string;
     quantity: number;
     price: number;
+    menu_id: string;
     createdAt?: Date | string;
     updateAt?: Date | string;
 };
@@ -517,9 +517,9 @@ export type orderItemUpdateManyWithWhereWithoutOrderInput = {
 };
 export type orderItemCreateManyMenuInput = {
     id?: string;
-    order_id: string;
     quantity: number;
     price: number;
+    order_id: string;
     createdAt?: Date | string;
     updateAt?: Date | string;
 };
@@ -533,25 +533,25 @@ export type orderItemUpdateWithoutMenuInput = {
 };
 export type orderItemUncheckedUpdateWithoutMenuInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
-    order_id?: Prisma.StringFieldUpdateOperationsInput | string;
     quantity?: Prisma.IntFieldUpdateOperationsInput | number;
     price?: Prisma.FloatFieldUpdateOperationsInput | number;
+    order_id?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 export type orderItemUncheckedUpdateManyWithoutMenuInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
-    order_id?: Prisma.StringFieldUpdateOperationsInput | string;
     quantity?: Prisma.IntFieldUpdateOperationsInput | number;
     price?: Prisma.FloatFieldUpdateOperationsInput | number;
+    order_id?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 export type orderItemCreateManyOrderInput = {
     id?: string;
-    menu_id: string;
     quantity: number;
     price: number;
+    menu_id: string;
     createdAt?: Date | string;
     updateAt?: Date | string;
 };
@@ -565,26 +565,26 @@ export type orderItemUpdateWithoutOrderInput = {
 };
 export type orderItemUncheckedUpdateWithoutOrderInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
-    menu_id?: Prisma.StringFieldUpdateOperationsInput | string;
     quantity?: Prisma.IntFieldUpdateOperationsInput | number;
     price?: Prisma.FloatFieldUpdateOperationsInput | number;
+    menu_id?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 export type orderItemUncheckedUpdateManyWithoutOrderInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
-    menu_id?: Prisma.StringFieldUpdateOperationsInput | string;
     quantity?: Prisma.IntFieldUpdateOperationsInput | number;
     price?: Prisma.FloatFieldUpdateOperationsInput | number;
+    menu_id?: Prisma.StringFieldUpdateOperationsInput | string;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 export type orderItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
-    order_id?: boolean;
-    menu_id?: boolean;
     quantity?: boolean;
     price?: boolean;
+    order_id?: boolean;
+    menu_id?: boolean;
     createdAt?: boolean;
     updateAt?: boolean;
     order?: boolean | Prisma.orderDefaultArgs<ExtArgs>;
@@ -592,10 +592,10 @@ export type orderItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
 }, ExtArgs["result"]["orderItem"]>;
 export type orderItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
-    order_id?: boolean;
-    menu_id?: boolean;
     quantity?: boolean;
     price?: boolean;
+    order_id?: boolean;
+    menu_id?: boolean;
     createdAt?: boolean;
     updateAt?: boolean;
     order?: boolean | Prisma.orderDefaultArgs<ExtArgs>;
@@ -603,10 +603,10 @@ export type orderItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
 }, ExtArgs["result"]["orderItem"]>;
 export type orderItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
-    order_id?: boolean;
-    menu_id?: boolean;
     quantity?: boolean;
     price?: boolean;
+    order_id?: boolean;
+    menu_id?: boolean;
     createdAt?: boolean;
     updateAt?: boolean;
     order?: boolean | Prisma.orderDefaultArgs<ExtArgs>;
@@ -614,14 +614,14 @@ export type orderItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
 }, ExtArgs["result"]["orderItem"]>;
 export type orderItemSelectScalar = {
     id?: boolean;
-    order_id?: boolean;
-    menu_id?: boolean;
     quantity?: boolean;
     price?: boolean;
+    order_id?: boolean;
+    menu_id?: boolean;
     createdAt?: boolean;
     updateAt?: boolean;
 };
-export type orderItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "order_id" | "menu_id" | "quantity" | "price" | "createdAt" | "updateAt", ExtArgs["result"]["orderItem"]>;
+export type orderItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "quantity" | "price" | "order_id" | "menu_id" | "createdAt" | "updateAt", ExtArgs["result"]["orderItem"]>;
 export type orderItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     order?: boolean | Prisma.orderDefaultArgs<ExtArgs>;
     menu?: boolean | Prisma.menuDefaultArgs<ExtArgs>;
@@ -642,10 +642,10 @@ export type $orderItemPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: string;
-        order_id: string;
-        menu_id: string;
         quantity: number;
         price: number;
+        order_id: string;
+        menu_id: string;
         createdAt: Date;
         updateAt: Date;
     }, ExtArgs["result"]["orderItem"]>;
@@ -1005,10 +1005,10 @@ export interface Prisma__orderItemClient<T, Null = never, ExtArgs extends runtim
  */
 export interface orderItemFieldRefs {
     readonly id: Prisma.FieldRef<"orderItem", 'String'>;
-    readonly order_id: Prisma.FieldRef<"orderItem", 'String'>;
-    readonly menu_id: Prisma.FieldRef<"orderItem", 'String'>;
     readonly quantity: Prisma.FieldRef<"orderItem", 'Int'>;
     readonly price: Prisma.FieldRef<"orderItem", 'Float'>;
+    readonly order_id: Prisma.FieldRef<"orderItem", 'String'>;
+    readonly menu_id: Prisma.FieldRef<"orderItem", 'String'>;
     readonly createdAt: Prisma.FieldRef<"orderItem", 'DateTime'>;
     readonly updateAt: Prisma.FieldRef<"orderItem", 'DateTime'>;
 }

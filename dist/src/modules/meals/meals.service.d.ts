@@ -16,9 +16,9 @@ export declare const getAllMeals: ({ category_id, cuisine, dietary, minPrice, ma
             review: number;
         };
     } & {
+        name: string;
         id: string;
         createdAt: Date;
-        name: string;
         description: string | null;
         category_id: string;
         isAvailable: boolean;
@@ -34,9 +34,9 @@ export declare const getAllMeals: ({ category_id, cuisine, dietary, minPrice, ma
     };
 }>;
 export declare const createMeal: (data: Omit<menu, "id" | "createdAt" | "updateAt">, user_id: string) => Promise<{
+    name: string;
     id: string;
     createdAt: Date;
-    name: string;
     description: string | null;
     category_id: string;
     isAvailable: boolean;
@@ -45,9 +45,9 @@ export declare const createMeal: (data: Omit<menu, "id" | "createdAt" | "updateA
     updateAt: Date;
 }>;
 export declare const updateMeal: (data: Partial<menu>, mealId: string) => Promise<{
+    name: string;
     id: string;
     createdAt: Date;
-    name: string;
     description: string | null;
     category_id: string;
     isAvailable: boolean;
@@ -56,9 +56,9 @@ export declare const updateMeal: (data: Partial<menu>, mealId: string) => Promis
     updateAt: Date;
 }>;
 export declare const deleteMeal: (mealId: string) => Promise<{
+    name: string;
     id: string;
     createdAt: Date;
-    name: string;
     description: string | null;
     category_id: string;
     isAvailable: boolean;
@@ -76,19 +76,19 @@ export declare const getSingleMeal: (mealId: string) => Promise<{
         parent_id: string | null;
     }[];
     category: {
+        name: string;
         status: import("../../../generated/prisma/enums").categoryStatus;
         id: string;
         createdAt: Date;
-        name: string;
         updateAt: Date;
     };
     _count: {
         review: number;
     };
 } & {
+    name: string;
     id: string;
     createdAt: Date;
-    name: string;
     description: string | null;
     category_id: string;
     isAvailable: boolean;
@@ -114,9 +114,9 @@ export declare const mealsService: {
                 review: number;
             };
         } & {
+            name: string;
             id: string;
             createdAt: Date;
-            name: string;
             description: string | null;
             category_id: string;
             isAvailable: boolean;
@@ -132,9 +132,9 @@ export declare const mealsService: {
         };
     }>;
     createMeal: (data: Omit<menu, "id" | "createdAt" | "updateAt">, user_id: string) => Promise<{
+        name: string;
         id: string;
         createdAt: Date;
-        name: string;
         description: string | null;
         category_id: string;
         isAvailable: boolean;
@@ -143,9 +143,9 @@ export declare const mealsService: {
         updateAt: Date;
     }>;
     updateMeal: (data: Partial<menu>, mealId: string) => Promise<{
+        name: string;
         id: string;
         createdAt: Date;
-        name: string;
         description: string | null;
         category_id: string;
         isAvailable: boolean;
@@ -163,19 +163,19 @@ export declare const mealsService: {
             parent_id: string | null;
         }[];
         category: {
+            name: string;
             status: import("../../../generated/prisma/enums").categoryStatus;
             id: string;
             createdAt: Date;
-            name: string;
             updateAt: Date;
         };
         _count: {
             review: number;
         };
     } & {
+        name: string;
         id: string;
         createdAt: Date;
-        name: string;
         description: string | null;
         category_id: string;
         isAvailable: boolean;
@@ -184,9 +184,9 @@ export declare const mealsService: {
         updateAt: Date;
     }>;
     deleteMeal: (mealId: string) => Promise<{
+        name: string;
         id: string;
         createdAt: Date;
-        name: string;
         description: string | null;
         category_id: string;
         isAvailable: boolean;
