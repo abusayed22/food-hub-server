@@ -81,7 +81,8 @@ export const getAllMeals = async ({ category_id, cuisine, dietary, minPrice, max
 
 
 // -------------------- Mutation type actions -------------------
-export const createMeal = async (data: Omit<menu, 'id' | 'createdAt' | 'updateAt'>, user_id: string) => {
+export const createMeal = async (data: Omit<menu, 'id' | 'createdAt' | 'updateAt'|'isAvailable'|'isFeatured'|'isNew'|'isSignature'>, user_id: string) => {
+    console.log("data in service:", data);
     const result = await prisma.menu.create({
         data
     });

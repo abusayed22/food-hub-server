@@ -5,7 +5,7 @@ model menu {
   isAvailable Boolean @default(true)
   price       Float
   description String?
-  iamge       String?
+  image       String?
   tags       String[]
   isFeatured  Boolean   @default(false)
   isSignature Boolean   @default(false)

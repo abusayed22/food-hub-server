@@ -33,7 +33,8 @@ async function createMeal(req:Request,res:Response,next:NextFunction) {
             res.status(404).json({ message: "Unauthorized!" })
         }
 
-        const result = await mealsService.createMeal(req.body,user_id as string)
+        const result = await mealsService.createMeal(req.body,user_id as string);
+        console.log(result)
         return res.status(201).json(result);
     } catch (error) {
         next(error)
