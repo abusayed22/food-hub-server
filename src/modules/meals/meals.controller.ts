@@ -4,19 +4,36 @@ import { mealsService } from "./meals.service";
 import { Role } from "../../constants/role.type";
 
 
- async function getAllMeals (req:Request,res:Response,next:NextFunction){
+const removeUndefined = (obj: Record<string, any>) => {
+    Object.keys(obj).forEach((key) => {
+        if (obj[key] === undefined) {
+            delete obj[key];
+        }
+    });
+    return obj;
+};
+
+async function getAllMeals(req: Request, res: Response, next: NextFunction) {
     try {
-        const { cuisine } = req.query
-        const cuisineString = typeof cuisine === 'string' ? cuisine : "";
-        const user_id = req.query.user_id as string | undefined;
-        const category_id = req.query.category_id as string | undefined;
-        const dietary = req.query.dietary as string | undefined;
-        const minPrice = req.query.minPrice as string | undefined;
-        const maxPrice = req.query.maxPrice as string | undefined;
+     
+        
+        const filters = removeUndefined({
+            user_id: req.query.user_id as string | undefined,
+            searchTerm: req.query.search as string | undefined,
+            category_id: req.query.category_id as string | undefined,
+            minPrice: req.query.minPrice ? Number(req.query.minPrice) : undefined,
+            maxPrice: req.query.maxPrice ? Number(req.query.maxPrice) : undefined,
+            isFeatured: req.query.isFeatured ? req.query.isFeatured === 'true' : undefined,
+            isSignature: req.query.isSignature ? req.query.isSignature === 'true' : undefined,
+            isNew: req.query.isNew ? req.query.isNew === 'true' : undefined,
+            isAvailable: req.query.isAvailable ? req.query.isAvailable === 'true' : undefined,
+            tags: req.query.tags ? (req.query.tags as string).split(',') : undefined,
+        });
 
-        const {page,limit,skip,orderBy,order} = paginationSortingHelper(req.query)
 
-        const result = await mealsService.getAllMeals({ cuisine: cuisineString,dietary,minPrice,maxPrice, category_id,page,limit,skip,orderBy,order });
+        const paginationOptions = paginationSortingHelper(req.query)
+
+        const result = await mealsService.getAllMeals(filters,paginationOptions);
         res.status(200).json(result);
     } catch (error) {
         console.log(error);
@@ -25,46 +42,46 @@ import { Role } from "../../constants/role.type";
 }
 
 
-async function createMeal(req:Request,res:Response,next:NextFunction) {
+async function createMeal(req: Request, res: Response, next: NextFunction) {
     try {
         const user = req.user
         const user_id = user?.id
-        if(!user){
+       
+        if (!user) {
             res.status(404).json({ message: "Unauthorized!" })
         }
 
-        const result = await mealsService.createMeal(req.body,user_id as string);
-        console.log(result)
+        const result = await mealsService.createMeal(req.body, user_id as string);
         return res.status(201).json(result);
     } catch (error) {
         next(error)
     }
 }
 
-async function updateMeal(req:Request,res:Response,next:NextFunction) {
+async function updateMeal(req: Request, res: Response, next: NextFunction) {
     try {
         const user = req.user
         const user_id = user?.id;
         const isAdmin = user?.role === Role.admin
         const { mealId } = req.params;
 
-        if(!user){
+        if (!user) {
             res.status(404).json({ message: "Unauthorized!" })
         }
 
-        const result = await mealsService.updateMeal(req.body,mealId as string)
+        const result = await mealsService.updateMeal(req.body, mealId as string)
         return res.status(201).json(result);
     } catch (error) {
         next(error)
     }
 }
 
-async function deleteMeal(req:Request,res:Response,next:NextFunction) {
+async function deleteMeal(req: Request, res: Response, next: NextFunction) {
     try {
         const user = req.user
         const { mealId } = req.params;
 
-        if(!user){
+        if (!user) {
             res.status(404).json({ message: "Unauthorized!" })
         }
 
@@ -76,13 +93,13 @@ async function deleteMeal(req:Request,res:Response,next:NextFunction) {
 }
 
 
-async function getSingleMeal(req:Request,res:Response,next:NextFunction) {
-    
+async function getSingleMeal(req: Request, res: Response, next: NextFunction) {
+
     try {
         const { mealId } = req.params;
 
-    const result = await mealsService.getSingleMeal(mealId as string)
-    return res.status(200).json(result)
+        const result = await mealsService.getSingleMeal(mealId as string)
+        return res.status(200).json(result)
     } catch (error) {
         console.log(error)
         next(error)
@@ -93,4 +110,4 @@ async function getSingleMeal(req:Request,res:Response,next:NextFunction) {
 
 
 
-export const mealsController = {getAllMeals,createMeal,updateMeal,getSingleMeal,deleteMeal}
+export const mealsController = { getAllMeals, createMeal, updateMeal, getSingleMeal, deleteMeal }

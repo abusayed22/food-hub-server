@@ -15,9 +15,9 @@ type OptionReturn = {
 }
 
 const paginationSortingHelper = (options:IOptions):OptionReturn => {
-    const page =  Number(options.page) ||1;
-    const limit = Number(options.limit)||5;
-    const skip = (page -1) * limit;
+    const page =  Number(options.page) 
+    const limit = Number(options.limit)
+    const skip = Number((page -1) * limit);
 
     const orderBy = options.orderBy?options.orderBy: 'createdAt';
     const order = options.order? options.order:'desc';
