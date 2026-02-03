@@ -9,6 +9,8 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
+  orders order[]
+  menu menu[]
 
   role   String? @default("USER")
   phone  String?

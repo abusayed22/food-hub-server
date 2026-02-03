@@ -13,6 +13,7 @@ model order {
   deliveryAddress String
   deliveryNote String?
   user_id String
+  user User @relation(fields: [user_id],references: [id])
   items orderItem[]
   createdAt       DateTime @default(now())
   updateAt        DateTime @default(now()) @updatedAt

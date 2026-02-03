@@ -37,6 +37,7 @@ export const getAllMeals = async (filters:Filters,paginationOption:PaginationOpt
     const skip = Number(paginationOption.skip) || (page - 1) * limit;
     const andCondition: menuWhereInput[] = [];
     
+    console.log("user id",user_id)
 
     // if have cuisine search value
     if (search) {
@@ -70,10 +71,16 @@ export const getAllMeals = async (filters:Filters,paginationOption:PaginationOpt
     }
 
     // if have user_id value
-    if(user_id){
-        andCondition.push({
-            user_id
-        })
+    if (user_id) {
+        // Ensure we don't filter for the string "undefined" or "null" by accident
+        // and trim any accidental whitespace
+        const cleanId = user_id.trim();
+        
+        if (cleanId && cleanId !== 'undefined' && cleanId !== 'null') {
+            andCondition.push({
+                user_id: cleanId
+            });
+        }
     }
 
     // if have minPrice value
@@ -189,35 +196,38 @@ export const createMeal = async (data: Omit<menu, 'id' | 'createdAt' | 'updateAt
     }
 }
 
+
 export const updateMeal = async (data: Partial<menu>, mealId: string) => {
 
-    const menuData = await prisma.menu.findUniqueOrThrow({
-        where: {
-            id:mealId
-        }
+    await prisma.menu.findUniqueOrThrow({
+        where: { id: mealId },
     });
 
-    // if (!isAdmin && (postData.user_id !== user_id)) {
-    //     throw new Error("Not permited the post update!");
-    // };
+    
+    const { 
+        id, 
+        createdAt, 
+        updateAt, 
+        _count, 
+        user_id, 
+        ...cleanData 
+    } = data as any; 
 
-    // if (!isAdmin) {
-    //     delete data.isFeatured
-    // }
-
-    if(!menuData){
-        throw new Error("Meal not found!")
-    }
 
     const result = await prisma.menu.update({
         where: {
-            id:mealId
+            id: mealId
         },
-        data
+        data: {
+            ...cleanData,
+            price: cleanData.price ? Number(cleanData.price) : undefined
+        }
     });
 
-    return result
+    return result;
 }
+
+
 
 export const deleteMeal = async (mealId: string) => {
 

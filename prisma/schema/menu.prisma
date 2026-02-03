@@ -13,8 +13,9 @@ model menu {
 
   review      review[]
   orderItem orderItem[]
-  category_id String
   user_id     String
+  user    User @relation(fields: [user_id], references: [id])
+  category_id String
   category    categories @relation(fields: [category_id], references: [id], onDelete: Cascade)
   createdAt   DateTime   @default(now())
   updateAt    DateTime   @default(now()) @updatedAt
