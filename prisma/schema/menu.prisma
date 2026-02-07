@@ -10,10 +10,11 @@ model menu {
   isFeatured  Boolean   @default(false)
   isSignature Boolean   @default(false)
   isNew      Boolean   @default(false)
+  ratings Float @default(0)
 
   review      review[]
   orderItem orderItem[]
-  user_id     String
+  user_id     String @map("user_id")
   user    User @relation(fields: [user_id], references: [id])
   category_id String
   category    categories @relation(fields: [category_id], references: [id], onDelete: Cascade)

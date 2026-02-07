@@ -8,7 +8,7 @@ model order {
   totalAmount Float
   paymentStatus PaymentStatus @default(PENDING) // Track if they paid
   paymentMethod PaymentMethod @default(CASH_ON_DELIVERY)
-  customerName  String
+  customerName  String?
   customerPhone String
   deliveryAddress String
   deliveryNote String?

@@ -37,9 +37,8 @@ export const getAllMeals = async (filters:Filters,paginationOption:PaginationOpt
     const skip = Number(paginationOption.skip) || (page - 1) * limit;
     const andCondition: menuWhereInput[] = [];
     
-    console.log("user id",user_id)
+    
 
-    // if have cuisine search value
     if (search) {
         const searchTerms = search.trim().split(/\s+/);
 
@@ -135,7 +134,6 @@ export const getAllMeals = async (filters:Filters,paginationOption:PaginationOpt
             category_id
         })
     }
-
 
 
     const res = await prisma.menu.findMany({

@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "menu" ADD COLUMN     "ratings" DOUBLE PRECISION NOT NULL DEFAULT 0;

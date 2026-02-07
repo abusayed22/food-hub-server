@@ -15,8 +15,6 @@ const removeUndefined = (obj: Record<string, any>) => {
 
 async function getAllMeals(req: Request, res: Response, next: NextFunction) {
     try {
-     
-        
         const filters = removeUndefined({
             user_id: req.query.user_id as string | undefined,
             searchTerm: req.query.search as string | undefined,
@@ -33,6 +31,7 @@ async function getAllMeals(req: Request, res: Response, next: NextFunction) {
 
         const paginationOptions = paginationSortingHelper(req.query)
 
+        
         const result = await mealsService.getAllMeals(filters,paginationOptions);
         res.status(200).json(result);
     } catch (error) {
