@@ -2,6 +2,7 @@ import { Request, Response } from "express"
 import { orederServices } from "./orders.service";
 import paginationSortingHelper from "../../helper/PaginationSortingHelper";
 import { orderStatus } from "../../../generated/prisma/enums";
+import { Role } from "../../constants/role.type";
 
 
 
@@ -116,8 +117,41 @@ export const getStatsOrderUser = async (req: Request, res: Response) => {
     }
 }
 
+export const adminOrderStatics = async (req: Request, res: Response) => {
+  try {
+    
+    
+    const user = req.user;
+
+    if (!user) {
+      return res.status(401).json({ message: "Unauthorized: Please log in" });
+    }
+    
+    if (user.role !== Role.admin) {
+      return res.status(403).json({ message: "Forbidden: Admin access required" });
+    }
+
+    // 2. Call Service
+    const stats = await orederServices.getAdminOrdestatics();
+
+    // 3. Success Response
+    return res.status(200).json({
+      data: stats,
+      error: null
+    });
+
+  } catch (error: any) {
+    console.error("Stats Controller Error:", error);
+    
+    return res.status(500).json({
+      data: null,
+      error: error.message
+    });
+  }
+}; 
 
 
 
 
-export const ordersController = {createOrder,getAllOrder,getSingleOrder,getStatsOrderUser,updateOrderStatus}
+
+export const ordersController = {createOrder,getAllOrder,getSingleOrder,getStatsOrderUser,updateOrderStatus,adminOrderStatics}
