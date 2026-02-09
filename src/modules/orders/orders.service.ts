@@ -33,6 +33,7 @@ export const getAllOrders = async (
   paginationOptions: PaginationOptions
 ) => {
 
+  console.log(filters) //TODO: 
   const { search, status, provider_id, startDate, endDate } = filters;
   const { page = 1, limit = 10, sortBy = 'createdAt', sortOrder = 'desc' } = paginationOptions;
 
@@ -62,7 +63,7 @@ export const getAllOrders = async (
   if (status && status !== 'all') {
     const statusKey = status.toLowerCase();
 
-    if (statusKey === 'pending') {
+    if (statusKey === 'pending' || statusKey === 'PENDING') {
       andConditions.push({ status: 'PENDING' });
     }
     else if (statusKey === 'active') {
@@ -154,7 +155,7 @@ export const getSingleOrder = async (orderId: string, user_id: string) => {
             select: {
               id: true,
               name: true,
-              image: true, 
+              image: true,
               price: true
             }
           }
@@ -163,8 +164,8 @@ export const getSingleOrder = async (orderId: string, user_id: string) => {
       // user:true
       user: {
         select: {
-          id:true,
-          name:true
+          id: true,
+          name: true
         }
       }
     }
@@ -203,66 +204,30 @@ export const getStatsOrderUser = async (user_id: string) => {
 
 // Admin
 export const getAdminOrdestatics = async () => {
-    // 1. Get Revenue (Only Valid Orders)
-    // We filter out CANCELLED orders for revenue calculation
-    const revenueAggregate = await prisma.order.aggregate({
-      _sum: {
-        totalAmount: true,
-      },
-      where: {
-        status: { not: "CANCELLED" } 
-      }
-    });
+  const statusGroup = await prisma.order.groupBy({
+    by: ['status'],
+    _count: {
+      id: true,
+    },
+  });
 
-    // 2. Get Counts by Status (All Orders)
-    // We group by status to get the distribution of all orders (including Cancelled)
-    const statusGroup = await prisma.order.groupBy({
-      by: ['status'],
-      _count: {
-        id: true,
-      },
-    });
+  const stats = statusGroup.reduce((acc, cur) => {
 
-    // 3. Get Recent Activity (Last 5 orders)
-    const recentOrders = await prisma.order.findMany({
-      take: 5,
-      orderBy: { createdAt: 'desc' },
-      include: {
-        user: { 
-          select: { name: true, email: true } 
-        },
-        items: {
-          take: 1 // Just to show "Burger x 2" etc if needed
-        }
-      }
-    });
-
-    // --- Calculations ---
-
-    // Total Revenue (Safe fallback to 0)
-    const totalRevenue = revenueAggregate._sum.totalAmount || 0;
-
-    // Helper to extract count from the groupBy result
-    const getCount = (status: orderStatus) => 
-      statusGroup.find((g) => g.status === status)?._count.id || 0;
-
-    // Categorize counts
-    const activeOrders = getCount("PENDING") + getCount("PREPARING");
-    const completedOrders = getCount("DELIVERED"); 
-    const cancelledOrders = getCount("CANCELLED");
-
-    // Total Orders (Sum of all groups to ensure consistency)
-    const totalOrders = statusGroup.reduce((acc, curr) => acc + curr._count.id, 0);
-
-    return {
-      totalRevenue,
-      totalOrders,
-      activeOrders,
-      completedOrders,
-      cancelledOrders,
-      recentOrders
-    };
-  }
+    acc[cur.status] = cur._count.id
+    acc.totalOrders += cur._count.id;
+    return acc
+  }, {
+    PENDING: 0,
+    CONFIRMED: 0,
+    PREPARING: 0,
+    READY: 0,
+    OUT_FOR_DELIVERY: 0,
+    DELIVERED: 0,
+    CANCELLED: 0,
+    totalOrders:0
+  })
+  return stats
+}
 
 
 // ---------------- Mutation Action ------------------
@@ -325,7 +290,7 @@ export const createOrder = async (data: CreateOrderInput) => {
 }
 
 export const updateOrderStatus = async (orderId: string, status: orderStatus) => {
- 
+
   try {
     const result = await prisma.order.update({
       where: {
@@ -350,7 +315,7 @@ export const updateOrderStatus = async (orderId: string, status: orderStatus) =>
 
 
 
-export const orederServices = { createOrder, getAllOrders, getSingleOrder, getStatsOrderUser,updateOrderStatus,getAdminOrdestatics }
+export const orederServices = { createOrder, getAllOrders, getSingleOrder, getStatsOrderUser, updateOrderStatus, getAdminOrdestatics }
 
 
 

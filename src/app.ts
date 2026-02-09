@@ -12,6 +12,7 @@ import { orderRoute } from './modules/orders/orders.route';
 import { Role } from './constants/role.type';
 import { adminRoute } from './modules/admin/admin.route';
 import errorHandler from './middleware/error/globalErrorHandler';
+import { userRoute } from './modules/user/user.route';
 
 const app = express()
 const port = process.env.PORT 
@@ -38,6 +39,7 @@ app.all('/api/auth/{*any}', toNodeHandler(auth));
 app.use("/api/meals",mealsRoute)
 app.use("/api/categories",categoryRoute)
 app.use("/api/orders",authMiddleware(Role.provider,Role.admin,Role.customer),orderRoute)
+app.use("/api/user",authMiddleware(Role.provider,Role.admin,Role.customer),userRoute)
 
 // provider routes
 // app.use("/api/provider/meals",authMiddleware(Role.provider),mealsRoute)

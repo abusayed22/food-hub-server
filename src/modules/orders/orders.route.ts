@@ -10,7 +10,7 @@ route.get("/",authMiddleware(Role.customer,Role.provider,Role.admin),ordersContr
 route.get("/details/:orderId",authMiddleware(Role.customer,Role.provider),ordersController.getSingleOrder)
 route.patch("/details/:orderId",authMiddleware(Role.customer,Role.provider),ordersController.updateOrderStatus)
 route.get("/stats",authMiddleware(Role.customer),ordersController.getStatsOrderUser)
-route.get("/admin/statics",authMiddleware(Role.customer),ordersController.adminOrderStatics)
+route.get("/admin/statics",authMiddleware(Role.admin),ordersController.adminOrderStatics)
 
 
 
